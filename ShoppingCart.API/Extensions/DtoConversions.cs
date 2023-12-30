@@ -34,5 +34,20 @@ namespace ShoppingCart.API.Extensions
 
             //return productDtos;
         }
+
+        public static ProductDto ToProductDto(this Entities.Product product, Entities.ProductCategory productCategory)
+        {
+            return new ProductDto
+            {
+                Id = product.Id,
+                ProductName = product.Name,
+                ProductDescription = product.Description,
+                ProductImageURL = product.ImageURL,
+                ProductPrice = product.Price,
+                Quantity = product.Quantity,
+                CategoryId = product.CategoryId,
+                CategoryName = productCategory.Name
+            };
+        }
     }
 }

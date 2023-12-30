@@ -1,0 +1,38 @@
+﻿@page "/product/{id:int}"
+
+@inherits ProductDetailsBase
+
+@if (Product == null && ErrorMessage == null)
+{
+    <div>Loading...</div>
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError Error="ErrorMessage" />
+}
+else
+{
+    <MudText Typo="Typo.h4">Product details</MudText>
+    <MudDivider />
+    <MudGrid Class="pa-4 d-flex justify-space-around align-center">
+        <MudItem Style="height:500px; width:650px;">
+            <MudPaper Elevation="0">
+                <MudImage Fluid="true" Src="@Product.ProductImageURL" ObjectFit="ObjectFit.Fill" ObjectPosition="ObjectPosition.Center" Class="rounded-lg pa-4" />
+            </MudPaper>
+        </MudItem>
+        <MudItem Style="height:400px; width:650px;">
+            <MudPaper Elevation="0" Class="pa-4 d-flex flex-column justify-space-between flex-grow-1 gap-4">
+                <MudText Typo="Typo.h5">@Product.ProductName</MudText>
+                    <MudDivider />
+                    <MudText Typo="Typo.body2">@Product.ProductDescription</MudText>
+                    <MudDivider />
+                    <MudText Typo="Typo.h6">Price: @Product.ProductPrice $ (@Product.Quantity items in stock)</MudText>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled">Add to cart</MudButton>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+
+}

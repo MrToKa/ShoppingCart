@@ -23,20 +23,60 @@ namespace ShoppingCart.Web.Services
             throw new NotImplementedException();
         }
 
-        public Task<ProductDto> GetProduct(int id)
+        public async Task<ProductDto?> GetProduct(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"api/product/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return default;
+                    }
+
+                    ProductDto? product = await response.Content.ReadFromJsonAsync<ProductDto>();
+                    return product;
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+            }
+            catch (Exception)
+            {
+                //Log exception
+                throw;
+            }
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
         {
             try
             {
-                IEnumerable<ProductDto>? products = await httpClient.GetFromJsonAsync<IEnumerable<ProductDto>>("api/product");
-                return products;
+                HttpResponseMessage response = await httpClient.GetAsync("api/product");
+                if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return Enumerable.Empty<ProductDto>();
+                    }
+
+                    IEnumerable<ProductDto>? products = await response.Content.ReadFromJsonAsync<IEnumerable<ProductDto>>();
+                    return products;
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    throw new Exception(message);
+                }
+
             }
             catch (Exception)
             {
+                //Log exception
                 throw;
             }
         }

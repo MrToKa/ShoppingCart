@@ -39,5 +39,29 @@ namespace ShoppingCart.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
+        {
+            try
+            {
+                Entities.Product? product = await productRepository.GetProductByIdAsync(id);
+                Entities.ProductCategory? productCategory = await productRepository.GetCategoryAsync(product.CategoryId);
+
+                if (product == null || productCategory == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    ProductDto productDto = product.ToProductDto(productCategory);
+                    return Ok(productDto);
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
     }
 }
