@@ -1,0 +1,62 @@
+﻿@page "/"
+
+@inherits ProductsBase
+
+@if (Products == null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <MudText Typo="Typo.h4">Products</MudText>
+
+    var productsCount = Products.Count();
+
+    @if (productsCount > 0)
+    {
+        <MudText Typo="Typo.body2">There are @productsCount products in our Online Shop!</MudText>
+        var productsRowList = new List<ProductDto>();
+
+        var productsByCategory = Products
+                                 .GroupBy(product => product.CategoryId)
+                                 .OrderBy(productGroup => productGroup.Key)
+                                 .Select(productGroup => productGroup);
+
+        @foreach (var category in productsByCategory)
+        {
+            <MudText Typo="Typo.h5" Style="font-weight: bold" Class="d-flex flex-row flex-grow-1 justify-center gap-4">@category.FirstOrDefault(pg => pg.CategoryId == category.Key).CategoryName</MudText>
+            <MudDivider />
+            <MudGrid Spacing="2" Class="justify-space-evenly">
+                @foreach (var product in category.Take(4))
+                {
+                    <MudItem xs="12" sm="12" lg="4" md="6" xl="3" xxl="3" Class="d-inline-flex align-stretch justify-center mud-width-full py-2">
+                        <MudPaper Class="flex-none d-flex align-stretch py-2" Width="400px" Height="620px" Elevation="0">
+                            <MudCard Outlined="true" Class="rounded-lg d-flex justify-space-between flex-column">
+                                <MudImage Src="@product.ProductImageURL" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" Height="350" Width="400" Class="rounded-lg" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.h5">@product.ProductName</MudText>
+                                        <MudText Typo="Typo.body2">@product.ProductDescription</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions Class="d-flex justify-space-between px-5">
+                                        <MudButton Color="Color.Primary" Variant="Variant.Filled">Add to cart</MudButton>
+                                        <MudText Typo="Typo.h6">Price: @product.ProductPrice $</MudText>
+                                </MudCardActions>
+                            </MudCard>
+                        </MudPaper>
+                    </MudItem>
+                }
+            </MudGrid>
+        }
+
+
+    }
+
+    else
+    {
+        <MudText Typo="Typo.body2">No products found</MudText>
+    }
+}
+
+@code {
+
+}
