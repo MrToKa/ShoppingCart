@@ -1,6 +1,4 @@
-# Project Title
-
-Shopping cart
+# Shopping cart
 
 ## Description
 
