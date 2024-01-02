@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShoppingCart.Models\ShoppingCart.Models.csproj" />
-    <ProjectReference Include="..\ShoppingCart.Web\ShoppingCart.Web.csproj" />
+    <ProjectReference Include="..\ShoppingCart.Models\OnlineShopCart.Models.csproj" />
+    <ProjectReference Include="..\ShoppingCart.Web\OnlineShopCart.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

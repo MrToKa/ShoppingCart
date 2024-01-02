@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using ShoppingCart.API.Data;
-using ShoppingCart.API.Repositories.Contracts;
+using OnlineShopCart.API.Data;
+using OnlineShopCart.API.Repositories;
+using OnlineShopCart.API.Repositories.Contracts;
+
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 ));
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 WebApplication app = builder.Build();
 

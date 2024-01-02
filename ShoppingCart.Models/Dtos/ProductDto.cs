@@ -1,4 +1,4 @@
-﻿namespace ShoppingCart.Models.Dtos
+﻿namespace OnlineShopCart.Models.Dtos
 {
     public class ProductDto
     {

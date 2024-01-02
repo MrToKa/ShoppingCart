@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShoppingCart.API.Extensions;
-using ShoppingCart.API.Repositories.Contracts;
-using ShoppingCart.Models.Dtos;
+using OnlineShopCart.API.Extensions;
+using OnlineShopCart.API.Repositories.Contracts;
+using OnlineShopCart.Models.Dtos;
 
-namespace ShoppingCart.API.Controllers
+namespace OnlineShopCart.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

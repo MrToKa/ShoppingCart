@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ShoppingCart.Models.Dtos;
-using ShoppingCart.Web.Services.Contracts;
+using OnlineShopCart.Models.Dtos;
+using OnlineShopCart.Web.Services.Contracts;
 
-namespace ShoppingCart.Web.Pages
+namespace OnlineShopCart.Web.Pages
 {
     public class ProductsBase : ComponentBase
     {

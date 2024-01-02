@@ -27,7 +27,11 @@ else
                     <MudText Typo="Typo.body2">@Product.ProductDescription</MudText>
                     <MudDivider />
                     <MudText Typo="Typo.h6">Price: @Product.ProductPrice $ (@Product.Quantity items in stock)</MudText>
-                <MudButton Color="Color.Primary" Variant="Variant.Filled">Add to cart</MudButton>
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="() => AddToCart_ClickAsync(new CartItemToAddDto{
+                        CartId = HardCoded.CartId,
+                        ProductId = Product.Id,
+                        Quantity = 1
+                        })">Add to cart</MudButton>
             </MudPaper>
         </MudItem>
     </MudGrid>

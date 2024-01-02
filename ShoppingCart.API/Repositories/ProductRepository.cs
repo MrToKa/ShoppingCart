@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingCart.API.Data;
-using ShoppingCart.API.Entities;
+using OnlineShopCart.API.Data;
+using OnlineShopCart.API.Entities;
+using OnlineShopCart.API.Repositories.Contracts;
 
-namespace ShoppingCart.API.Repositories.Contracts
+namespace OnlineShopCart.API.Repositories
 {
     public class ProductRepository : IProductRepository
     {

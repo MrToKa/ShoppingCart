@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ShoppingCart.Models.Dtos;
+using OnlineShopCart.Models.Dtos;
 
-namespace ShoppingCart.Web.Pages
+namespace OnlineShopCart.Web.Pages
 {
     public class DisplayProductsBase : ComponentBase
     {

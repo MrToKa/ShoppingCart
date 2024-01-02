@@ -1,8 +1,8 @@
-﻿using ShoppingCart.Models.Dtos;
-using ShoppingCart.Web.Services.Contracts;
+﻿using OnlineShopCart.Models.Dtos;
+using OnlineShopCart.Web.Services.Contracts;
 using System.Net.Http.Json;
 
-namespace ShoppingCart.Web.Services
+namespace OnlineShopCart.Web.Services
 {
     public class ProductService : IProductService
     {

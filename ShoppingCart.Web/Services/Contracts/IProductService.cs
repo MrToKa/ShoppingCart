@@ -1,6 +1,6 @@
-﻿using ShoppingCart.Models.Dtos;
+﻿using OnlineShopCart.Models.Dtos;
 
-namespace ShoppingCart.Web.Services.Contracts
+namespace OnlineShopCart.Web.Services.Contracts
 {
     public interface IProductService
     {

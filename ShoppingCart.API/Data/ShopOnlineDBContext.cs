@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShoppingCart.API.Entities;
+using OnlineShopCart.API.Entities;
 
-namespace ShoppingCart.API.Data
+namespace OnlineShopCart.API.Data
 {
     public class ShopOnlineDBContext : DbContext
     {

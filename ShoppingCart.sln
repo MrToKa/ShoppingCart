@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.Web", "ShoppingCart.Web\ShoppingCart.Web.csproj", "{85F73EE9-D5DA-4163-93B8-34B66B57B1B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopCart.Web", "ShoppingCart.Web\OnlineShopCart.Web.csproj", "{85F73EE9-D5DA-4163-93B8-34B66B57B1B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.API", "ShoppingCart.API\ShoppingCart.API.csproj", "{4D27E028-6E58-4162-8C10-2BF974C9378D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopCart.API", "ShoppingCart.API\OnlineShopCart.API.csproj", "{4D27E028-6E58-4162-8C10-2BF974C9378D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.Models", "ShoppingCart.Models\ShoppingCart.Models.csproj", "{40473199-4C6B-401D-8A9F-9D55CFBD7AB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShopCart.Models", "ShoppingCart.Models\OnlineShopCart.Models.csproj", "{40473199-4C6B-401D-8A9F-9D55CFBD7AB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

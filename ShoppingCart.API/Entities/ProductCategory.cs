@@ -1,4 +1,4 @@
-﻿namespace ShoppingCart.API.Entities
+﻿namespace OnlineShopCart.API.Entities
 {
     public class ProductCategory
     {

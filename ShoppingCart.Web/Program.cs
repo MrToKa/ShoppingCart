@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
-using ShoppingCart.Web;
-using ShoppingCart.Web.Services;
-using ShoppingCart.Web.Services.Contracts;
+using OnlineShopCart.Web;
+using OnlineShopCart.Web.Services;
+using OnlineShopCart.Web.Services.Contracts;
 
 WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,5 +13,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 builder.Services.AddMudServices();
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 
 await builder.Build().RunAsync();

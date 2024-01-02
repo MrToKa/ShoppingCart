@@ -1,6 +1,6 @@
-﻿using ShoppingCart.API.Entities;
+﻿using OnlineShopCart.API.Entities;
 
-namespace ShoppingCart.API.Repositories.Contracts
+namespace OnlineShopCart.API.Repositories.Contracts
 {
     public interface IProductRepository
     {
