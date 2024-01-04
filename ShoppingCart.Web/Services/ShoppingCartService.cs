@@ -38,9 +38,27 @@ namespace OnlineShopCart.Web.Services
 
         }
 
-        public Task DeleteItem(int id)
+        public async Task<CartItemDto?> DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HttpResponseMessage response = await httpClient.DeleteAsync($"api/ShoppingCart/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.StatusCode == System.Net.HttpStatusCode.NoContent
+                     ? default
+                     : await response.Content.ReadFromJsonAsync<CartItemDto>();
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Response was {response.StatusCode} and message: {message}");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public Task<CartItemDto?> GetItem(int id)

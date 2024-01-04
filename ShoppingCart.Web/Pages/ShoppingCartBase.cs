@@ -24,5 +24,29 @@ namespace OnlineShopCart.Web.Pages
                 ErrorMessage = ex.Message;
             }
         }
+
+        protected async Task DeleteCartItem_Click(int cartItemId)
+        {
+            _ = await ShoppingCartService.DeleteItem(cartItemId);
+            RemoveCartItem(cartItemId);
+        }
+
+        private CartItemDto? GetCartItem(int id)
+        {
+            return CartItems.FirstOrDefault(x => x.Id == id);
+        }
+
+        private void RemoveCartItem(int id)
+        {
+            CartItemDto cartItem = GetCartItem(id);
+            if (cartItem != null)
+            {
+                cartItem.Quantity--;
+                if (cartItem.Quantity == 0)
+                {
+                    _ = CartItems.Remove(cartItem);
+                }
+            }
+        }
     }
 }

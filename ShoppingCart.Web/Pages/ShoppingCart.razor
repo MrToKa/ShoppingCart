@@ -14,30 +14,38 @@ else
 {
     <MudText Typo="Typo.h4">Shopping cart</MudText>
     <MudDivider />
-
-    @foreach (var item in CartItems)
+    if (CartItems.Count == 0)
     {
-        <MudCard>
-            <MudCardContent>
-                <MudGrid>
-                    <MudItem xs="12" md="6">
-                        <MudText Typo="Typo.h6">@item.ProductName</MudText>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudText Typo="Typo.h6">Quantity: @item.Quantity</MudText>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudText Typo="Typo.h6">Price: @item.ProductPrice</MudText>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudText Typo="Typo.h6">Total: @(item.ProductPrice * item.Quantity) $</MudText>
-                        </MudItem>
-                    </MudGrid>
-                </MudCardContent>
-            </MudCard>
+        <MudText Typo="Typo.h6">Your shopping cart is empty.</MudText>
     }
-
-
+    else
+    {
+        <MudText Typo="Typo.h6">You have a total of @CartItems.Sum(q => q.Quantity) items from @CartItems.Count() different products in your shopping cart.</MudText>
+        @foreach (var item in CartItems)
+        {
+            <MudCard Outlined="true">
+                <MudCardContent Style="height:310px;">
+                    <MudGrid Justify="Justify.FlexStart">
+                        <MudText Typo="Typo.h6">@item.ProductName</MudText>
+                            <MudDivider />
+                            <MudItem Class="d-flex justify-space-around align-center">
+                                <MudItem>
+                                    <MudPaper Elevation="0">
+                                        <MudImage Style="height:250px; width:250px;" Fluid="true" Src="@item.ProductImageURL" ObjectFit="ObjectFit.Cover" ObjectPosition="ObjectPosition.Center" Class="rounded-lg pa-4" />
+                                    </MudPaper>
+                                </MudItem>
+                                <MudItem>
+                                    <MudText Typo="Typo.h6">Quantity: @item.Quantity</MudText>
+                                    <MudText Typo="Typo.h6">Price: @item.ProductPrice</MudText>
+                                    <MudText Typo="Typo.h6">Total: @(item.ProductPrice * item.Quantity) $</MudText>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Error" Size="Size.Medium" OnClick="@(() => DeleteCartItem_Click(item.Id))" Title="Remove" />
+                                </MudItem>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                </MudCard>
+        }
+    }
 }
 
 @code {

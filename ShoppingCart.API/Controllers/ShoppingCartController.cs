@@ -103,5 +103,32 @@ namespace OnlineShopCart.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<CartItemDto>> DeleteItem(int id)
+        {
+            try
+            {
+                CartItem? itemToDelete = await shoppingCartRepository.DeleteItem(id);
+                if (itemToDelete == null)
+                {
+                    return NoContent();
+                }
+
+                Product product = await productRepository.GetProductByIdAsync(itemToDelete.ProductId);
+                if (product == null)
+                {
+                    throw new Exception("No product exists in the the database");
+                }
+
+                CartItemDto cartItemDto = itemToDelete.ConvertToDto(product);
+
+                return Ok(cartItemDto);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
     }
 }
