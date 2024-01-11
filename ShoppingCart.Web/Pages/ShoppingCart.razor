@@ -45,7 +45,7 @@ else
                                                     <MudText Typo="Typo.h6">Price: @item.ProductPrice</MudText>
                                                     <MudText Typo="Typo.h6">Total: @(item.ProductPrice * item.Quantity) $</MudText>
                                                     <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="@(() => DeleteCartItem_Click(item.Id))">Remove</MudButton>
-                                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="() => UpdateQtyCartItem_Click(item.Id, item.Quantity)">Update Quantity</MudButton>
+                                                    @* <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="() => UpdateQtyCartItem_Click(item.Id, item.Quantity)">Update Quantity</MudButton> *@
                                                 </MudItem>
                                             </MudItem>
                                         </MudItem>
@@ -60,7 +60,8 @@ else
                             <MudText Typo="Typo.h6" Class="pa-4 mr-16">Your shopping cart value is:</MudText>
                             <MudDivider />
                             <MudItem>
-                                <MudText Typo="Typo.h6">Total: @TotalPrice $</MudText>
+                                @* <MudText Typo="Typo.h6">Total: @TotalPrice $</MudText> *@
+                                <MudText Typo="Typo.h6">Total: @CartItems.Sum(q => q.Quantity * q.ProductPrice) $</MudText>
                             </MudItem>
                             <MudItem>
                                 @* <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="() => Checkout_Click()">Checkout</MudButton> *@
