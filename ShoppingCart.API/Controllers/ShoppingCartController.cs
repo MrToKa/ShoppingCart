@@ -130,5 +130,33 @@ namespace OnlineShopCart.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+
+        [HttpPatch("{id:int}")]
+        public async Task<ActionResult<CartItemDto>> UpdateQuantity(int id, [FromBody] CartItemQuantityUpdateDto item)
+        {
+            try
+            {
+                CartItem? itemToUpdate = await shoppingCartRepository.UpdateQuantity(id, item);
+                if (itemToUpdate == null)
+                {
+                    return NoContent();
+                }
+
+                Product product = await productRepository.GetProductByIdAsync(itemToUpdate.ProductId);
+                if (product == null)
+                {
+                    throw new Exception("No product exists in the the database");
+                }
+
+                CartItemDto cartItemDto = itemToUpdate.ConvertToDto(product);
+
+                return Ok(cartItemDto);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
     }
 }

@@ -1,6 +1,8 @@
-﻿using OnlineShopCart.Models.Dtos;
+﻿using Newtonsoft.Json;
+using OnlineShopCart.Models.Dtos;
 using OnlineShopCart.Web.Services.Contracts;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace OnlineShopCart.Web.Services
 {
@@ -91,9 +93,31 @@ namespace OnlineShopCart.Web.Services
             }
         }
 
-        public Task<CartItemDto?> UpdateItem(CartItemDto item)
+        public async Task<CartItemDto?> UpdateItem(CartItemDto item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var jsonRequest = JsonConvert.SerializeObject(item);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await httpClient.PatchAsync($"api/ShoppingCart/{item.Id}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.StatusCode == System.Net.HttpStatusCode.NoContent
+                        ? default
+                        : await response.Content.ReadFromJsonAsync<CartItemDto>();
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Http Response was {response.StatusCode} and message: {message}");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
